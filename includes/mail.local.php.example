@@ -1,0 +1,22 @@
+<?php
+declare(strict_types=1);
+
+/**
+ * Copy this file to mail.local.php and fill in your SMTP details.
+ * mail.local.php is not committed — keep credentials there only.
+ *
+ * Typical hosting for info@jmmginfo.in:
+ *   SMTP_HOST = mail.jmmginfo.in (or smtp.jmmginfo.in — check with your host)
+ *   SMTP_PORT = 587
+ *   SMTP_USER = info@jmmginfo.in
+ *   SMTP_PASS = your mailbox password
+ *   SMTP_ENCRYPTION = tls
+ */
+
+define('MAIL_DRIVER', 'smtp');
+
+define('SMTP_HOST', 'mail.jmmginfo.in');
+define('SMTP_PORT', 587);
+define('SMTP_USER', 'info@jmmginfo.in');
+define('SMTP_PASS', 'your-password-here');
+define('SMTP_ENCRYPTION', 'tls');
