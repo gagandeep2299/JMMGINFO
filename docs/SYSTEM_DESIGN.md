@@ -115,7 +115,7 @@ sequenceDiagram
     participant H as header.php
     participant F as footer.php
 
-    B->>W: GET /pages/courses.php?course=python
+    B->>W: GET /pages/services.php
     W->>P: Execute PHP
     P->>C: require config.php
     P->>P: Set $pageTitle, $root
@@ -155,15 +155,15 @@ There is **no front controller**. Each URL maps to a physical PHP file.
 
 | URL path | Handler | Purpose |
 |----------|---------|---------|
-| `/` or `/index.php` | `index.php` | Home: hero, services, courses, testimonials |
-| `/pages/about.php` | About, vision, branches |
-| `/pages/services.php` | All services (anchor sections) |
-| `/pages/courses.php` | Course catalog + `?course=` detail |
-| `/pages/contact.php` | Contact form + info |
-| `/pages/placement.php` | Placement + gallery |
-| `/pages/careers.php` | Job listings with apply links |
-| `/pages/resources.php` | Certificates, payment, career |
-| `/pages/mock-interview.php` | Protected campus assessment (`?key=`) |
+| `/` or `/index.php` | `index.php` | IT services homepage and service finder |
+| `/pages/about.php` | About, service groups, locations |
+| `/pages/services.php` | IT service directory (anchor sections) |
+| `/pages/contact.php` | IT enquiry form and company contact details |
+| `/pages/courses.php` | Redirects to `/pages/services.php` (legacy URL) |
+| `/pages/placement.php` | Redirects to `/pages/services.php` (legacy URL) |
+| `/pages/careers.php` | Redirects to `/pages/services.php` (legacy URL) |
+| `/pages/resources.php` | Redirects to `/pages/services.php` (legacy URL) |
+| `/pages/mock-interview.php` | Redirects to `/pages/services.php` (legacy URL) |
 | `/api/enquire.php` | POST only — lead capture |
 
 `.htaccess` sets `DirectoryIndex index.php` and disables directory listing. No URL rewriting to clean paths.
@@ -176,33 +176,21 @@ There is **no front controller**. Each URL maps to a physical PHP file.
 flowchart LR
     Home[Home]
     About[About Us]
-    HR[HR Services]
-    IT[IT Services dropdown]
-    Train[Training Program dropdown]
-    Careers[Careers]
-    Contact[Contact Us]
+    IT[IT Services]
+    Contact[Contact]
 
     Home --> About
-    Home --> HR
     Home --> IT
-    Home --> Train
-    Home --> Careers
     Home --> Contact
 
-    IT --> IT1[Ticketing, Cloud, AI, etc.]
-    IT --> IT2[New software sub-items]
-    IT1 --> Enquire[#enquire modal]
-
-    Train --> T1[B-tech/BCA/MCA/M-Tech]
-    Train --> T2[BBA/MBA]
-    Train --> T3[Graduation]
-    Train --> T4[Corporates]
-    Train --> T5[Colleges]
-    Train --> T6[Any Others → enquire]
+    IT --> IT1[AI and custom software]
+    IT --> IT2[Cloud and microservices]
+    IT --> IT3[Workflow and managed support]
+    IT --> Enquire[#enquire modal]
 ```
 
-**Header** (`includes/header.php`): built from `$itServicesNav`, `$trainingPrograms`, and static links.  
-**Footer**: trending course links, resources, social (LinkedIn, Instagram).
+**Header** (`includes/header.php`): IT services, About, Contact, and the enquiry action.  
+**Footer**: IT service links, company contact details, and social links.
 
 ---
 
@@ -216,22 +204,13 @@ All dynamic copy is centralized in `includes/config.php`:
 | `$heroBanners` | Home carousel |
 | `$majorServices` | Home “Major Services” cards |
 | `$stats` | Home stats bar |
-| `$popularCourses` | Home + courses grid |
-| `$courseMenu` | Course categories (courses page) |
 | `$services` | Services page sections |
 | `$itServicesNav` | IT Services nav dropdown |
-| `$trainingPrograms` | Training Program nav (6 items) |
-| `$testimonials` | Home + placement |
-| `$blogs` | Home blog cards |
-| `$careerJobs` | Careers page |
-| `$hrGallery` | Placement gallery |
 
 **Helper functions:**
 
 - `e()` — HTML escape  
 - `navEnquiryTopic()` — enquiry modal attributes  
-- `trainingProgramItemUrl()` — training nav links  
-- `courseSlug()` — URL slug for courses  
 - `pageUrl()` / `isActivePage()` — URL helpers  
 
 There is **no admin UI**; content changes require editing `config.php` and redeploying.

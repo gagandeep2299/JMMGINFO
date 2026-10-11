@@ -12,13 +12,14 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $name = trim($_POST['name'] ?? '');
 $email = trim($_POST['email'] ?? '');
 $phone = trim($_POST['phone'] ?? '');
-$course = trim($_POST['course'] ?? '');
+$service = trim($_POST['service'] ?? '');
 $message = trim($_POST['message'] ?? '');
 
 $redirect = $_SERVER['HTTP_REFERER'] ?? '../index.php';
 $separator = str_contains($redirect, '?') ? '&' : '?';
 
-if ($name === '' || $email === '' || $phone === '' || $course === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+$serviceTitles = array_column($services, 'title');
+if ($name === '' || $email === '' || $phone === '' || !in_array($service, $serviceTitles, true) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     header('Location: ' . $redirect . $separator . 'enquiry=error');
     exit;
 }
@@ -32,7 +33,7 @@ $entry = [
     'name' => $name,
     'email' => $email,
     'phone' => $phone,
-    'course' => $course,
+    'service' => $service,
     'message' => $message,
     'submitted_at' => date('c'),
     'ip' => $_SERVER['REMOTE_ADDR'] ?? '',
@@ -44,7 +45,7 @@ file_put_contents(
     FILE_APPEND | LOCK_EX
 );
 
-if (!sendEnquiryEmail($name, $email, $phone, $course, $message)) {
+if (!sendEnquiryEmail($name, $email, $phone, $service, $message)) {
     header('Location: ' . $redirect . $separator . 'enquiry=error');
     exit;
 }

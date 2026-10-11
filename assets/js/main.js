@@ -277,7 +277,7 @@
 
     function setEnquiryTopic(topic) {
 
-        const select = document.querySelector('#enquireForm select[name="course"]');
+        const select = document.querySelector('#enquireForm select[name="service"]');
 
         if (!select || !topic) return;
 
@@ -428,12 +428,6 @@
         });
 
     }
-
-
-
-    initTestimonialSlider('testimonialSlider');
-
-    initTestimonialSlider('placementTestimonialSlider');
 
 })();
 

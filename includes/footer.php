@@ -1,12 +1,43 @@
     </main>
 
+<?php if (!empty($isHomepage)): ?>
+    <footer class="jh-footer">
+        <div class="jh-footer-main jh-wrap">
+            <div>
+                <a class="jh-footer-brand" href="<?= e($homeUrl) ?>" aria-label="JMMG INFORTECH home">
+                    <img src="<?= e($root . $logoFull) ?>" alt="">
+                    <span><strong>JMMG</strong><small>INFORTECH</small></span>
+                </a>
+                <div class="jh-footer-contact">
+                    <?= e(SITE_ADDRESS) ?><br>
+                    <a href="mailto:<?= e(SITE_EMAIL) ?>"><?= e(SITE_EMAIL) ?></a><br>
+                    <a href="mailto:<?= e(SITE_EMAIL_SALES) ?>"><?= e(SITE_EMAIL_SALES) ?></a>
+                </div>
+            </div>
+            <div class="jh-footer-group">
+                <h2>Business</h2>
+                <nav class="jh-footer-links" aria-label="Business links">
+                    <a href="<?= e($root) ?>pages/services.php">IT Services</a>
+                    <a href="<?= e($root) ?>pages/about.php">About JMMG</a>
+                    <a href="<?= e($root) ?>pages/contact.php">Contact</a>
+                </nav>
+            </div>
+        </div>
+        <div class="jh-footer-bottom">
+            <div class="jh-footer-bottom-inner jh-wrap">
+                <span>&copy; <?= date('Y') ?> <?= e(SITE_NAME) ?>. All rights reserved.</span>
+                <span><?= e(SITE_TAGLINE) ?></span>
+            </div>
+        </div>
+    </footer>
+<?php else: ?>
     <footer class="site-footer">
         <div class="footer-cta">
             <div class="container">
                 <div class="footer-cta-grid">
                     <div>
-                        <h3>Ready to start your journey?</h3>
-                        <p>IT services, payroll & compliance, HR services, and training & internship under one roof.</p>
+                        <h3>Ready to build your next digital solution?</h3>
+                        <p>Custom software, cloud engineering, AI automation, and managed IT support for businesses that want to move faster.</p>
                     </div>
                     <div class="footer-cta-actions">
                         <a href="#enquire" class="btn btn-teal" data-open-enquire>Enquire Now</a>
@@ -23,38 +54,27 @@
                     <p><?= e(SITE_TAGLINE) ?></p>
                     <p><i class="fas fa-map-marker-alt"></i> <?= e(SITE_ADDRESS) ?></p>
                     <p><i class="fas fa-envelope"></i> <a href="mailto:<?= e(SITE_EMAIL) ?>"><?= e(SITE_EMAIL) ?></a></p>
-                    <p><i class="fas fa-briefcase"></i> <a href="mailto:<?= e(SITE_EMAIL_CAREERS) ?>"><?= e(SITE_EMAIL_CAREERS) ?></a></p>
+                    <p><i class="fas fa-headset"></i> Sales: <a href="mailto:<?= e(SITE_EMAIL_SALES) ?>"><?= e(SITE_EMAIL_SALES) ?></a></p>
                     <div class="footer-social">
                         <a href="<?= e(SITE_LINKEDIN) ?>" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                         <a href="<?= e(SITE_INSTAGRAM) ?>" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="footer-col">
-                    <h4>Trending Courses</h4>
+                    <h4>Our Focus</h4>
                     <ul>
-                        <li><a href="<?= e($root) ?>pages/courses.php?course=full-stack">Full Stack</a></li>
-                        <li><a href="<?= e($root) ?>pages/courses.php?course=java">Java Training</a></li>
-                        <li><a href="<?= e($root) ?>pages/courses.php?course=machine-learning">Machine Learning</a></li>
-                        <li><a href="<?= e($root) ?>pages/courses.php?course=python">Python Training</a></li>
-                        <li><a href="<?= e($root) ?>pages/courses.php?course=generative-ai">Generative AI</a></li>
+                        <li><a href="<?= e($root) ?>pages/services.php#ai-product-engineering">AI Product Engineering</a></li>
+                        <li><a href="<?= e($root) ?>pages/services.php#custom-software">Custom Software</a></li>
+                        <li><a href="<?= e($root) ?>pages/services.php#cloud-modernization">Cloud & DevOps</a></li>
+                        <li><a href="<?= e($root) ?>pages/services.php#managed-it-support">Managed IT Support</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Useful Links</h4>
                     <ul>
                         <li><a href="<?= e($root) ?>pages/about.php">About Us</a></li>
-                        <li><a href="<?= e($root) ?>pages/services.php">Corporate Training</a></li>
-                        <li><a href="<?= e($root) ?>pages/services.php#hr-services">HR Services</a></li>
-                        <li><a href="<?= e($root) ?>pages/placement.php">Placement</a></li>
+                        <li><a href="<?= e($root) ?>pages/services.php">IT Services</a></li>
                         <li><a href="<?= e($root) ?>pages/contact.php">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="<?= e($root) ?>pages/resources.php">Verify Certificates</a></li>
-                        <li><a href="<?= e($root) ?>pages/resources.php#payment">Make Payment</a></li>
-                        <li><a href="<?= e($root) ?>pages/careers.php">Careers</a></li>
                     </ul>
                 </div>
             </div>
@@ -64,13 +84,13 @@
             <div class="container footer-bottom-inner">
                 <p>&copy; <?= date('Y') ?> <?= e(SITE_NAME) ?>. All rights reserved.</p>
                 <ul class="footer-links">
-                    <li><a href="<?= e($root) ?>pages/careers.php">Careers</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Terms &amp; Conditions</a></li>
                 </ul>
             </div>
         </div>
     </footer>
+<?php endif; ?>
 
     <div class="modal" id="enquireModal" aria-hidden="true">
         <div class="modal-backdrop" data-close-enquire></div>
@@ -82,11 +102,8 @@
                 <input type="text" name="name" placeholder="Your Name *" required>
                 <input type="email" name="email" placeholder="Email *" required>
                 <input type="tel" name="phone" placeholder="Phone *" required>
-                <select name="course" required>
-                    <option value="">Select Course / Service</option>
-                    <?php foreach ($popularCourses as $course): ?>
-                    <option value="<?= e($course['name']) ?>"><?= e($course['name']) ?></option>
-                    <?php endforeach; ?>
+                <select name="service" required>
+                    <option value="">Select an IT service</option>
                     <?php foreach ($services as $svc): ?>
                     <option value="<?= e($svc['title']) ?>"><?= e($svc['title']) ?></option>
                     <?php endforeach; ?>
@@ -98,5 +115,8 @@
     </div>
 
     <script src="<?= e($root) ?>assets/js/main.js"></script>
+<?php if (!empty($isHomepage)): ?>
+    </div>
+<?php endif; ?>
 </body>
 </html>

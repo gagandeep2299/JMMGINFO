@@ -10,10 +10,10 @@ if (is_file($mailLocal)) {
 
 require_once __DIR__ . '/smtp.php';
 
-function sendEnquiryEmail(string $name, string $email, string $phone, string $course, string $message): bool
+function sendEnquiryEmail(string $name, string $email, string $phone, string $service, string $message): bool
 {
     $to = SITE_EMAIL;
-    $subject = 'New Website Enquiry: ' . $course . ' | ' . SITE_NAME;
+    $subject = 'New Website Enquiry: ' . $service . ' | ' . SITE_NAME;
 
     $bodyLines = [
         'A new enquiry was submitted on the ' . SITE_NAME . ' website.',
@@ -21,7 +21,7 @@ function sendEnquiryEmail(string $name, string $email, string $phone, string $co
         'Name: ' . $name,
         'Email: ' . $email,
         'Phone: ' . $phone,
-        'Course / Service: ' . $course,
+        'IT Service: ' . $service,
         'Message: ' . ($message !== '' ? $message : '(not provided)'),
         '',
         'Submitted at: ' . date('Y-m-d H:i:s'),
